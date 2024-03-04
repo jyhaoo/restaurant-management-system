@@ -1,59 +1,40 @@
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 import styled from "styled-components";
-import { IoIosSearch } from "react-icons/io";
-import { BiFoodMenu } from "react-icons/bi";
-import { FiShoppingCart } from "react-icons/fi";
-import { RiBillLine } from "react-icons/ri";
+import { IoCartOutline } from "react-icons/io5";
 
-const Nav = styled.div`
-  background-color: #c7c6c1;
-  width: 108px;
-  height: 783px;
-  justify-content: center;
-  position: fixed;
-`;
-
-const ItemContainer = styled.div`
-  width: 89px;
-  height: 89px;
-  margin-left: 25px;
+const Img = styled.img`
+  width: 100px;
+  height: 65px;
   margin-right: 10px;
-  margin-top: 65px;
 `;
 
-const SearchStyle = { width: "46px", height: "50px" };
-const MenuStyle = { width: "45px", height: "50px" };
-const ShoppingStyle = { width: "43px", height: "50px" };
-const BillStyle = { width: "37px", height: "51px" };
+const CartStyle = { width: "40px", height: "40px" };
 
-const ItemName = styled.div`
-  width: 89px;
-  height: 34px;
-  font-size: 17px;
-  // margin-top: 5px;
-  // margin-left: 20px;
-`;
-
-const Navbar = () => {
+const NavBar = () => {
   return (
-    <Nav>
-      <ItemContainer>
-        <IoIosSearch style={SearchStyle} />
-        <ItemName>Search</ItemName>
-      </ItemContainer>
-      <ItemContainer>
-        <BiFoodMenu style={MenuStyle} />
-        <ItemName>Menu</ItemName>
-      </ItemContainer>
-      <ItemContainer>
-        <FiShoppingCart style={ShoppingStyle} />
-        <ItemName>Cart</ItemName>
-      </ItemContainer>
-      <ItemContainer>
-        <RiBillLine style={BillStyle} />
-        <ItemName>Bill</ItemName>
-      </ItemContainer>
-    </Nav>
+    <>
+      <Navbar bg="light" data-bs-theme="light" sticky="top">
+        <Container>
+          <Img
+            src={require("../../images/RestaurantName.png")}
+            alt="Restaurant Logo"
+          />
+          <Navbar.Brand href="#home">Mian Tsao</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link href="/features">Menu</Nav.Link>
+          </Nav>
+          <Nav className="justify-content-end">
+            <Nav.Link href="#bill">
+              <IoCartOutline style={CartStyle} />
+            </Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+    </>
   );
 };
 
-export default Navbar;
+export default NavBar;
