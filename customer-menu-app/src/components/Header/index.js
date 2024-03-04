@@ -2,10 +2,8 @@ import styled from "styled-components";
 import RestaurantName from "../../images/RestaurantName.png";
 
 const HeaderContainer = styled.div`
-  position: relative;
-  width: 1332px;
+  width: 100%;
   height: 70px;
-  justify-content: center;
 `;
 const Img = styled.img`
   position: relative;
@@ -15,20 +13,21 @@ const Img = styled.img`
 `;
 
 const Name = styled.div`
-  position: relative;
+  position: absolute;
   font-size: 20px;
   font-weight: 600;
   left: 50%;
 `;
 
 const Line = styled.hr`
+  margin-top: 30px;
   border-top: 1px solid #000000;
 `;
 
 const Header = () => {
   return (
     <HeaderContainer>
-      <Img src={RestaurantName} alt="restaurant-name-image" />
+      <Img src={RestaurantName} />
       <Name>Mian Tiao</Name>
       <Line />
     </HeaderContainer>
