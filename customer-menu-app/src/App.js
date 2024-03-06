@@ -1,7 +1,17 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/Navbar";
+import Landing from "./pages/Landing";
+import Home from "./pages/Home";
 
 function App() {
-  return <NavBar />;
+  return (
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
