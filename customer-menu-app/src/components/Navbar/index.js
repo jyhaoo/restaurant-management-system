@@ -14,10 +14,10 @@ const NavBar = () => {
           <Navbar.Brand href="#home">Mian Tsao</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/features">Menu</Nav.Link>
+            <Nav.Link href="/menu">Menu</Nav.Link>
           </Nav>
           <Nav className="justify-content-end">
-            <Nav.Link href="#bill">
+            <Nav.Link href="/bill">
               <IoCartOutline style={CartStyle} />
             </Nav.Link>
           </Nav>

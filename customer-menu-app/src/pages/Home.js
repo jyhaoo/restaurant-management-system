@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import FoodCard from "../components/Cards/FoodCard";
+import HomeFoodCard from "../components/Cards/HomeFoodCard";
 
 const Container = styled.div`
   display: flex;
@@ -22,15 +22,15 @@ const Home = () => {
   return (
     <Container>
       <CardContainer>
-        <FoodCard name="Cold Noodles" />
-        <FoodCard name="Cold Noodles" />
-        <FoodCard name="Cold Noodles" />
-        <FoodCard name="Cold Noodles" />
-        <FoodCard name="Cold Noodles" />
-        <FoodCard name="Cold Noodles" />
-        <FoodCard name="Cold Noodles" />
-        <FoodCard name="Cold Noodles" />
-        <FoodCard name="Cold Noodles" />
+        <HomeFoodCard name="Cold Noodles" />
+        <HomeFoodCard name="Cold Noodles" />
+        <HomeFoodCard name="Cold Noodles" />
+        <HomeFoodCard name="Cold Noodles" />
+        <HomeFoodCard name="Cold Noodles" />
+        <HomeFoodCard name="Cold Noodles" />
+        <HomeFoodCard name="Cold Noodles" />
+        <HomeFoodCard name="Cold Noodles" />
+        <HomeFoodCard name="Cold Noodles" />
       </CardContainer>
     </Container>
   );
