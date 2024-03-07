@@ -17,7 +17,7 @@ function FoodModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.dishes.name}
+          {props.openModal.dish.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ textAlign: "center" }}>

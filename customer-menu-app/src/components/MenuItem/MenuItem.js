@@ -3,6 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 400px;
   height: 300px;
+  z-index: 1;
 `;
 
 const Img = styled.img`
@@ -19,13 +20,12 @@ const Price = styled.div`
   font-size: 15px;
 `;
 
-const MenuItem = ({ props }) => {
-  console.log(props);
+const MenuItem = ({ dish, setOpenModal }) => {
   return (
-    <Container>
+    <Container onClick={() => setOpenModal({ state: true, dish: dish })}>
       <Img src={require("../../images/ColdNoodles.jpeg")} />
-      <Name>{props.name}</Name>
-      <Price>{props.price}</Price>
+      <Name>{dish.name}</Name>
+      <Price>{dish.price}</Price>
     </Container>
   );
 };
