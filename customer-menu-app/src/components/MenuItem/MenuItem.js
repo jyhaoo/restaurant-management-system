@@ -20,6 +20,7 @@ const Price = styled.div`
 `;
 
 const MenuItem = ({ props }) => {
+  console.log(props);
   return (
     <Container>
       <Img src={require("../../images/ColdNoodles.jpeg")} />
