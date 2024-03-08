@@ -1,2 +1,6 @@
-package com.jyhaoo.restaurantmanagementsystembackend.mappers;public class Mapper {
+package com.jyhaoo.restaurantmanagementsystembackend.mappers;
+
+public interface Mapper<A, B> {
+    B mapTo(A a);
+    A mapFrom(B b);
 }
