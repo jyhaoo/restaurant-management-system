@@ -4,7 +4,11 @@ import com.jyhaoo.restaurantmanagementsystembackend.domain.dto.DishDto;
 import com.jyhaoo.restaurantmanagementsystembackend.domain.entities.DishEntity;
 import com.jyhaoo.restaurantmanagementsystembackend.mappers.Mapper;
 import com.jyhaoo.restaurantmanagementsystembackend.services.DishService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -21,11 +25,11 @@ public class DishController {
         this.dishMapper = dishMapper;
     }
 
-//    @PostMapping(path = "/dishes")
-//    public ResponseEntity<DishEntity> createDish(@RequestBody DishEntity dishEntity) {
-//        DishEntity savedDishEntity = dishService.save(dishEntity);
-//        return new ResponseEntity<>(savedDishEntity, HttpStatus.CREATED);
-//    }
+    @PostMapping(path = "/dishes")
+    public ResponseEntity<DishEntity> createDish(@RequestBody DishEntity dishEntity) {
+        DishEntity savedDishEntity = dishService.save(dishEntity);
+        return new ResponseEntity<>(savedDishEntity, HttpStatus.CREATED);
+    }
 
     @GetMapping(path = "/dishes")
     public List<DishDto> listDishes() {
