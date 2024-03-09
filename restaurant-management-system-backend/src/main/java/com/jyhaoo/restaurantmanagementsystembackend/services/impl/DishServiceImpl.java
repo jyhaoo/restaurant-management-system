@@ -6,6 +6,7 @@ import com.jyhaoo.restaurantmanagementsystembackend.services.DishService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -26,8 +27,13 @@ public class DishServiceImpl implements DishService {
     @Override
     public List<DishEntity> findAll() {
         return StreamSupport.stream(dishRepository
-                .findAll()
-                .spliterator(),
-        false).collect(Collectors.toList());
+                        .findAll()
+                        .spliterator(),
+                false).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<DishEntity> findOne(Long id) {
+        return dishRepository.findById(id);
     }
 }

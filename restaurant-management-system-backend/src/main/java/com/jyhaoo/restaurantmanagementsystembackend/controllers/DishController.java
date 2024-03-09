@@ -6,12 +6,10 @@ import com.jyhaoo.restaurantmanagementsystembackend.mappers.Mapper;
 import com.jyhaoo.restaurantmanagementsystembackend.services.DishService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -20,6 +18,7 @@ public class DishController {
     private final DishService dishService;
 
     private final Mapper<DishEntity, DishDto> dishMapper;
+
     public DishController(DishService dishService, Mapper dishMapper) {
         this.dishService = dishService;
         this.dishMapper = dishMapper;
@@ -37,5 +36,16 @@ public class DishController {
         return dishes.stream()
                 .map(dishMapper::mapTo)
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping(path = "/dishes/{id}")
+    public ResponseEntity<DishDto> getDish(@PathVariable("id") Long id) {
+        Optional<DishEntity> foundDish = dishService.findOne(id);
+        return foundDish.map(dishEntity -> {
+            DishDto dishDto = dishMapper.mapTo(dishEntity);
+            return new ResponseEntity<>(dishDto, HttpStatus.OK);
+        }).orElse(
+                new ResponseEntity<>(HttpStatus.NOT_FOUND)
+        );
     }
 }
