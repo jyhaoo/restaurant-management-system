@@ -67,6 +67,14 @@ public class DishControllerIntegrationTests {
         ).andExpect(MockMvcResultMatchers.status().isOk());
     }
 
+    @Test
+    public void testThatGetDishReturnsHttpStatus404ForNonExistingDish() throws Exception {
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/dishes/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
     /* Create & Read */
     @Test
     public void testThatListDishesReturnsDish() throws Exception {
@@ -79,5 +87,18 @@ public class DishControllerIntegrationTests {
         ).andExpect(MockMvcResultMatchers.jsonPath("$.[0].id").value(dishEntity.getId())
         ).andExpect(MockMvcResultMatchers.jsonPath("$.[0].name").value(dishEntity.getName())
         ).andExpect(MockMvcResultMatchers.jsonPath("$.[0].price").value(dishEntity.getPrice()));
+    }
+
+    @Test
+    public void testThatGetDishesReturnsDish() throws Exception {
+        DishEntity dishEntity = TestDataUtil.createTestDishEntityA();
+        dishService.save(dishEntity);
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/dishes/" + dishEntity.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(MockMvcResultMatchers.jsonPath("$.id").value(dishEntity.getId())
+        ).andExpect(MockMvcResultMatchers.jsonPath("$.name").value(dishEntity.getName())
+        ).andExpect(MockMvcResultMatchers.jsonPath("$.price").value(dishEntity.getPrice()));
     }
 }
