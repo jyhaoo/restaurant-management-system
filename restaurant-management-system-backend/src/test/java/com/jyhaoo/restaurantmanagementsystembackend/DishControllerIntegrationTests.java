@@ -1,6 +1,7 @@
 package com.jyhaoo.restaurantmanagementsystembackend;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jyhaoo.restaurantmanagementsystembackend.domain.dto.DishDto;
 import com.jyhaoo.restaurantmanagementsystembackend.domain.entities.DishEntity;
 import com.jyhaoo.restaurantmanagementsystembackend.services.DishService;
 import org.junit.jupiter.api.Test;
@@ -37,9 +38,31 @@ public class DishControllerIntegrationTests {
 
     /* HTTP Status Codes */
     @Test
+    public void testThatPostDishesReturnsHttpStatus200() throws Exception {
+        DishDto dishDto = TestDataUtil.createTestDishDto();
+        String dishJson = objectMapper.writeValueAsString(dishDto);
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/dishes")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(dishJson)
+        ).andExpect(MockMvcResultMatchers.status().isCreated());
+    }
+
+    @Test
     public void testThatListDishesReturnsHttpStatus200() throws Exception {
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/dishes")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void testThatGetDishReturnsHttpStatus200ForExistingDish() throws Exception {
+        DishEntity dishEntity = TestDataUtil.createTestDishEntityA();
+        dishService.save(dishEntity);
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/dishes/" + dishEntity.getId())
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(MockMvcResultMatchers.status().isOk());
     }
